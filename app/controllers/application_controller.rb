@@ -11,4 +11,3 @@ class ApplicationController < ActionController::Base
     gear_path
   end
 end
-
