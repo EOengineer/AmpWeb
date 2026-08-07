@@ -1,0 +1,31 @@
+#!/bin/bash -e
+
+if [ -f Gemfile ]; then
+  bundle check >/dev/null 2>&1 || bundle install
+fi
+
+# Wait for Postgres
+if [ -n "${DATABASE_URL:-}" ]; then
+  echo "Waiting for PostgreSQL..."
+  until pg_isready -d "${DATABASE_URL}" >/dev/null 2>&1; do
+    sleep 1
+  done
+  echo "PostgreSQL is ready."
+fi
+
+# Web server: install JS, build CSS, prepare DBs
+if [ "${1}" = "./bin/rails" ] && [ "${2}" = "server" ]; then
+  if [ -f package.json ]; then
+    yarn install --immutable
+    yarn build:css
+  fi
+  ./bin/rails db:prepare
+  RAILS_ENV=test ./bin/rails db:prepare
+fi
+
+# Sidekiq: ensure schema is ready without rebuilding assets
+if [ "${1}" = "bundle" ] && [ "${2}" = "exec" ] && [ "${3}" = "sidekiq" ]; then
+  ./bin/rails db:prepare
+fi
+
+exec "$@"
