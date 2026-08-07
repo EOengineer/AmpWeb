@@ -11,6 +11,7 @@ services:
       DATABASE_URL: postgres://ampweb:ampweb@db:5432/ampweb_development
       REDIS_URL: redis://redis:6379/0
       OPENSEARCH_URL: http://opensearch:9200
+      MAILCATCHER_HOST: mailcatcher
     volumes:
       - .:/rails
       - bundle_data:/usr/local/bundle
@@ -22,6 +23,8 @@ services:
         condition: service_healthy
       opensearch:
         condition: service_healthy
+      mailcatcher:
+        condition: service_started
     stdin_open: true
     tty: true
 
@@ -35,6 +38,7 @@ services:
       DATABASE_URL: postgres://ampweb:ampweb@db:5432/ampweb_development
       REDIS_URL: redis://redis:6379/0
       OPENSEARCH_URL: http://opensearch:9200
+      MAILCATCHER_HOST: mailcatcher
     volumes:
       - .:/rails
       - bundle_data:/usr/local/bundle
@@ -46,8 +50,16 @@ services:
         condition: service_healthy
       opensearch:
         condition: service_healthy
+      mailcatcher:
+        condition: service_started
       web:
         condition: service_started
+
+  mailcatcher:
+    image: sj26/mailcatcher
+    ports:
+      - "1080:1080"
+      - "1025:1025"
 
   db:
     image: postgres:16

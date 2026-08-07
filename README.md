@@ -10,6 +10,8 @@ Rails 8 + Hotwire + Bootstrap app, fully runnable via Docker Compose.
 - Redis 7
 - Sidekiq
 - OpenSearch + Searchkick
+- MailCatcher (dev email)
+- Devise
 - RSpec
 
 ## Prerequisites
@@ -26,7 +28,8 @@ docker compose up --build
 
 App: http://localhost:3000  
 Sidekiq Web: http://localhost:3000/sidekiq  
-OpenSearch: http://localhost:9200
+OpenSearch: http://localhost:9200  
+MailCatcher: http://localhost:1080
 
 ## Common commands
 
@@ -54,3 +57,4 @@ Defaults live in `.env` (see `.env.example`). Compose wires:
 - `DATABASE_URL` → Postgres service `db`
 - `REDIS_URL` → Redis service `redis`
 - `OPENSEARCH_URL` → OpenSearch service `opensearch`
+- `MAILCATCHER_HOST` → MailCatcher service `mailcatcher` (SMTP :1025, UI :1080)
