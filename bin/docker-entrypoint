@@ -20,6 +20,7 @@ if [ "${1}" = "./bin/rails" ] && [ "${2}" = "server" ]; then
     yarn build:css
   fi
   ./bin/rails db:prepare
+  ./bin/rails db:seed
   RAILS_ENV=test ./bin/rails db:prepare
 fi
 

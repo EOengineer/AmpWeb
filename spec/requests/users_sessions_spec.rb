@@ -10,9 +10,10 @@ RSpec.describe "User sessions", type: :request do
 
     post user_session_path, params: { user: { email: user.email, password: password } }
 
-    expect(response).to redirect_to(root_path)
+    expect(response).to redirect_to(gear_path)
     follow_redirect!
     expect(response.body).to include(user.email)
+    expect(response.body).to include("data-controller=\"audio-io\"")
   end
 
   it "does not sign in an unconfirmed user" do

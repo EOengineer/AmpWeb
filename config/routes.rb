@@ -8,5 +8,9 @@ Rails.application.routes.draw do
   # Sidekiq dashboard (open in development — lock down before any shared deploy)
   mount Sidekiq::Web => "/sidekiq"
 
+  authenticate :user do
+    get "gear", to: "gear#show", as: :gear
+  end
+
   root "pages#home"
 end
