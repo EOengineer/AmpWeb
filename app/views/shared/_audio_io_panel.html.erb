@@ -1,0 +1,82 @@
+<%# Shared silverface audio I/O panel — mount anywhere with Stimulus audio-io %>
+<section
+  class="audio-io-panel"
+  data-controller="audio-io"
+  data-audio-io-running-value="false"
+  aria-label="Audio input"
+>
+  <div class="audio-io-panel__chassis">
+    <div class="audio-io-panel__faceplate">
+      <div class="audio-io-panel__brand">
+        <span
+          class="audio-io-panel__jewel"
+          data-audio-io-target="jewel"
+          data-live="false"
+          aria-hidden="true"
+        ></span>
+        <h2 class="audio-io-panel__title">Input</h2>
+      </div>
+
+      <div class="audio-io-panel__controls">
+        <label class="audio-io-panel__control">
+          <span class="audio-io-panel__label">Device</span>
+          <select
+            class="audio-io-panel__select"
+            data-audio-io-target="deviceSelect"
+            data-action="change->audio-io#deviceChanged"
+          >
+            <option value="">Request permission…</option>
+          </select>
+        </label>
+
+        <label class="audio-io-panel__control">
+          <span class="audio-io-panel__label">Channel</span>
+          <select
+            class="audio-io-panel__select"
+            data-audio-io-target="channelSelect"
+            data-action="change->audio-io#channelChanged"
+            disabled
+          >
+            <option value="">—</option>
+          </select>
+        </label>
+
+        <div class="audio-io-panel__control audio-io-panel__control--action">
+          <span class="audio-io-panel__label">Capture</span>
+          <button
+            type="button"
+            class="audio-io-panel__btn"
+            data-audio-io-target="toggleButton"
+            data-action="click->audio-io#toggle"
+          >
+            Start
+          </button>
+        </div>
+
+        <label class="audio-io-panel__control audio-io-panel__control--toggle">
+          <span class="audio-io-panel__label">Monitor</span>
+          <input
+            type="checkbox"
+            class="audio-io-panel__checkbox"
+            data-audio-io-target="monitorToggle"
+            data-action="change->audio-io#monitorChanged"
+          >
+        </label>
+
+        <div class="audio-io-panel__control audio-io-panel__control--meter">
+          <span class="audio-io-panel__label">Level</span>
+          <div class="audio-io-panel__meter" aria-hidden="true">
+            <div
+              class="audio-io-panel__meter-fill"
+              data-audio-io-target="meterFill"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="audio-io-panel__status" data-audio-io-target="status" role="status">
+        Idle — choose a device and press Start
+      </p>
+    </div>
+  </div>
+</section>

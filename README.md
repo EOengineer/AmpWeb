@@ -31,6 +31,11 @@ Sidekiq Web: http://localhost:3000/sidekiq
 OpenSearch: http://localhost:9200  
 MailCatcher: http://localhost:1080
 
+Dev seed user (created on web container start via `db:seed`):
+
+- Email: `test@example.com`
+- Password: `Password1234!`
+
 ## Common commands
 
 ```bash

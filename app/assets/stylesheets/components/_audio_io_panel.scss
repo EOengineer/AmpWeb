@@ -1,0 +1,272 @@
+// Silverface I/O faceplate — Fender 70s inspired
+$sf-font-display: "Bebas Neue", Impact, sans-serif;
+$sf-font-label: "Oswald", "Arial Narrow", sans-serif;
+
+.audio-io-panel {
+  --sf-aluminum-hi: #e8eaee;
+  --sf-aluminum: #c5c9d0;
+  --sf-aluminum-lo: #9a9fa8;
+  --sf-aluminum-shadow: #6e7380;
+  --sf-ink: #1a1c1f;
+  --sf-chassis: #2a2c30;
+  --sf-chassis-edge: #141516;
+  --sf-jewel-off: #4a1515;
+  --sf-jewel-on: #e02020;
+  --sf-jewel-glow: #ff4d4d;
+  --sf-meter-track: #3a3d44;
+  --sf-meter-fill: #2ec27e;
+  --sf-meter-warn: #e6b422;
+  --sf-label: #1a1c1f;
+
+  width: 100%;
+  margin-bottom: 2.5rem;
+}
+
+.audio-io-panel__chassis {
+  background:
+    linear-gradient(180deg, #3a3d42 0%, var(--sf-chassis) 40%, var(--sf-chassis-edge) 100%);
+  border-radius: 0.35rem;
+  padding: 0.55rem 0.55rem 0.7rem;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.audio-io-panel__faceplate {
+  position: relative;
+  background:
+    linear-gradient(
+      165deg,
+      var(--sf-aluminum-hi) 0%,
+      var(--sf-aluminum) 38%,
+      var(--sf-aluminum-lo) 72%,
+      var(--sf-aluminum-shadow) 100%
+    );
+  border-radius: 0.15rem;
+  padding: 1.1rem 1.25rem 0.85rem;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.55) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.2) inset,
+    0 2px 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
+    opacity: 0.12;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+  }
+}
+
+.audio-io-panel__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.audio-io-panel__jewel {
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #8a4040, var(--sf-jewel-off) 70%);
+  box-shadow:
+    0 0 0 2px #2a2c30,
+    0 1px 2px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+
+  &[data-live="true"] {
+    background: radial-gradient(circle at 35% 30%, #ff8a8a, var(--sf-jewel-on) 65%);
+    box-shadow:
+      0 0 0 2px #2a2c30,
+      0 0 10px var(--sf-jewel-glow),
+      0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.audio-io-panel__title {
+  font-family: $sf-font-display;
+  font-size: 1.85rem;
+  letter-spacing: 0.12em;
+  color: var(--sf-ink);
+  margin: 0;
+  line-height: 1;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.audio-io-panel__controls {
+  display: grid;
+  grid-template-columns: minmax(10rem, 2fr) minmax(6rem, 0.8fr) auto auto minmax(7rem, 1.2fr);
+  gap: 0.85rem 1.1rem;
+  align-items: end;
+  position: relative;
+  z-index: 1;
+
+  @media (max-width: 767.98px) {
+    grid-template-columns: 1fr 1fr;
+
+    .audio-io-panel__control--meter {
+      grid-column: 1 / -1;
+    }
+  }
+}
+
+.audio-io-panel__control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.audio-io-panel__label {
+  font-family: $sf-font-label;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sf-label);
+}
+
+.audio-io-panel__select {
+  appearance: none;
+  width: 100%;
+  font-family: $sf-font-label;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #f0f1f3;
+  background:
+    linear-gradient(180deg, #4a4e56 0%, #2e3138 100%);
+  border: 1px solid #1a1c1f;
+  border-radius: 0.2rem;
+  padding: 0.4rem 1.75rem 0.4rem 0.55rem;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.12) inset,
+    0 2px 3px rgba(0, 0, 0, 0.35);
+  background-image:
+    linear-gradient(180deg, #4a4e56 0%, #2e3138 100%),
+    linear-gradient(45deg, transparent 50%, #c5c9d0 50%),
+    linear-gradient(135deg, #c5c9d0 50%, transparent 50%);
+  background-position:
+    0 0,
+    calc(100% - 14px) calc(50% - 2px),
+    calc(100% - 9px) calc(50% - 2px);
+  background-size: auto, 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #5b8def;
+    outline-offset: 2px;
+  }
+}
+
+.audio-io-panel__btn {
+  font-family: $sf-font-label;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #f0f1f3;
+  background: linear-gradient(180deg, #5a5f68 0%, #2a2d33 100%);
+  border: 1px solid #121315;
+  border-radius: 0.2rem;
+  padding: 0.42rem 1.1rem;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.15) inset,
+    0 2px 4px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover {
+    background: linear-gradient(180deg, #676d78 0%, #32363e 100%);
+  }
+
+  &:active {
+    background: linear-gradient(180deg, #2a2d33 0%, #3a3e46 100%);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) inset;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #5b8def;
+    outline-offset: 2px;
+  }
+
+  &[data-running="true"] {
+    color: #fff;
+    background: linear-gradient(180deg, #c0392b 0%, #7a1c14 100%);
+  }
+}
+
+.audio-io-panel__control--toggle {
+  align-items: center;
+}
+
+.audio-io-panel__checkbox {
+  width: 1.15rem;
+  height: 1.15rem;
+  accent-color: var(--sf-jewel-on);
+  cursor: pointer;
+  margin: 0.35rem 0 0;
+}
+
+.audio-io-panel__meter {
+  height: 1.35rem;
+  background: var(--sf-meter-track);
+  border-radius: 0.15rem;
+  border: 1px solid #1a1c1f;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4) inset;
+  overflow: hidden;
+}
+
+.audio-io-panel__meter-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--sf-meter-fill), var(--sf-meter-warn));
+  box-shadow: 0 0 6px rgba(46, 194, 126, 0.45);
+  transition: width 0.05s linear;
+}
+
+.audio-io-panel__status {
+  position: relative;
+  z-index: 1;
+  margin: 0.85rem 0 0;
+  font-family: $sf-font-label;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: rgba(26, 28, 31, 0.75);
+  min-height: 1.1em;
+}
+
+.gear-hub__circuits {
+  padding: 0.5rem 0 2rem;
+}
+
+.gear-hub__circuits-title {
+  font-family: $sf-font-display;
+  font-size: 2rem;
+  letter-spacing: 0.08em;
+  color: #1a1c1f;
+  margin-bottom: 0.75rem;
+}
+
+.gear-hub__circuits-empty {
+  font-family: $sf-font-label;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  color: #6c757d;
+  margin: 0;
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
