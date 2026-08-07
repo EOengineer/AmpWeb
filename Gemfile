@@ -18,7 +18,7 @@ gem "stimulus-rails"
 gem "cssbundling-rails"
 
 # Background jobs
-gem "sidekiq", "~> 7.3"
+gem "sidekiq", "~> 8.0"
 gem "redis", ">= 5.0"
 gem "connection_pool", "< 3"
 
