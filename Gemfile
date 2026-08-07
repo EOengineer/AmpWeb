@@ -20,7 +20,7 @@ gem "cssbundling-rails"
 # Background jobs
 gem "sidekiq", "~> 7.3"
 gem "redis", ">= 5.0"
-gem "connection_pool", "< 3"
+gem "connection_pool", "< 4"
 
 # Search
 gem "searchkick", ">= 6.0"
